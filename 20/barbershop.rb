@@ -12,5 +12,9 @@ post '/' do
 	@title = 'Thank you!'
 	@message = "Dear #{@user_name}, we'll be waiting for you at #{@date_time}"
 
+	f = File.open 'users.txt', 'a'
+	f.write "User: #{@user_name}, Phone: #{@phone}, Date: #{@date_time}\n"
+	f.close
+
 	erb :message
 end
