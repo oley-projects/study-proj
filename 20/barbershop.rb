@@ -18,3 +18,19 @@ post '/' do
 
 	erb :message
 end
+
+get '/admin' do 
+	erb :admin
+end
+
+post '/admin' do
+
+	@login = params[:login]
+	@password = params[:pass]
+	if @login == 'admin' && @password == 'secret'
+		@logfile = File.read("users.txt")
+	else
+		erb :admin
+	end
+
+end
