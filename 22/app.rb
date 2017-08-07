@@ -38,12 +38,13 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@datetime = params[:datetime]
+	@barber = params[:barber]
 
 	@title = 'Thank you!'
 	@message = "Dear #{@username}, we'll be waiting for you at #{@datetime}"
 
 	f = File.open './public/users.txt', 'a'
-	f.write "User: #{@username}, Phone: #{@phone}, Date: #{@datetime}\n"
+	f.write "User: #{@username}, Phone: #{@phone}, Barber: #{@barber}, Date: #{@datetime}\n"
 	f.close
 
 	erb :message
