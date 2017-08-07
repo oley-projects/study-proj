@@ -4,7 +4,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
+	erb "Welcome to Barber Shop!"			
 end
 
 get '/about' do
@@ -15,6 +15,36 @@ get '/contacts' do
 	erb :contacts
 end
 
+post '/contacts' do
+	@mailname = params[:mailname]
+	@email = params[:email]
+	@text = params[:text]
+
+	@title = 'Thank you!'
+	@message = "Dear #{@mailname}, your message sent successfully"
+
+	f = File.open './public/contacts.txt', 'a'
+	f.write "User: #{@mailname}, Phone: #{@phone}, Date: #{@datetime}\n"
+	f.close
+
+	erb :message
+end
+
 get '/visit' do
 	erb :visit
+end
+
+post '/visit' do
+	@username = params[:username]
+	@phone = params[:phone]
+	@datetime = params[:datetime]
+
+	@title = 'Thank you!'
+	@message = "Dear #{@username}, we'll be waiting for you at #{@datetime}"
+
+	f = File.open './public/users.txt', 'a'
+	f.write "User: #{@username}, Phone: #{@phone}, Date: #{@datetime}\n"
+	f.close
+
+	erb :message
 end
