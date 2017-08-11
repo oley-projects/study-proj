@@ -57,12 +57,11 @@ post '/login' do
 	@login = params[:login]
 	@password = params[:password]
 
-	erb "Login: #{@login}, pass: #{@password}"
 
-	#if @login == 'admin' && @password == 'secret'
-	#	erb :admin
-	#else
-	#	erb :loginform
-	#end
+	if @login == 'admin' && @password == 'secret'
+		erb :admin
+	else
+		erb :loginform
+	end
 end
 
