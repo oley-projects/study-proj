@@ -20,8 +20,7 @@ post '/contacts' do
 	@email = params[:email]
 	@text = params[:text]
 
-	@title = 'Thank you!'
-	@message = "Dear #{@mailname}, your message sent successfully"
+	@message = "Thank you, #{@mailname}, your message sent successfully"
 
 	f = File.open './public/contacts.txt', 'a'
 	f.write "User: #{@mailname}, Phone: #{@phone}, Date: #{@datetime}\n"
@@ -49,3 +48,21 @@ post '/visit' do
 
 	erb :message
 end
+
+get '/login' do
+	erb :loginform
+end
+
+post '/login' do
+	@login = params[:login]
+	@password = params[:password]
+
+	erb "Login: #{@login}, pass: #{@password}"
+
+	#if @login == 'admin' && @password == 'secret'
+	#	erb :admin
+	#else
+	#	erb :loginform
+	#end
+end
+
